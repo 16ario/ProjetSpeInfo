@@ -34,7 +34,6 @@ Le projet repose sur une architecture simple à deux machines virtuelles :
 - Sessions sécurisées avec \`session_start()\` et vérification d’authentification sur chaque page protégée
 - Accès restreint à l’application via pare-feu (VMApp n’est pas exposée à Internet)
 
-
 ## 🧠 4. Choix techniques : pourquoi PHP brut ?
 
 ### ✅ Simplicité et maîtrise
@@ -51,7 +50,6 @@ Le projet repose sur une architecture simple à deux machines virtuelles :
 
 - Dans un contexte bancaire, l’utilisation de services tiers (frameworks, API externes, plateformes cloud) est souvent proscrite pour des raisons de conformité, de confidentialité et de souveraineté des données.
 - PHP brut permet de rester 100 % autonome et conforme aux exigences de sécurité internes.
-
 
 ## 🚀 5. Déploiement du projet depuis GitHub
 
@@ -71,7 +69,6 @@ sudo apt update
 sudo apt install mysql-server
 
 1.  Créer la base et de donnée avec le fichier bank_db.sql sur la machine back
-
 
 ### 🔹 Étapes sur VMApp (application PHP)
 
@@ -112,20 +109,20 @@ Cela permet une maintenance facilitée, une meilleure lisibilité, et une évolu
 
 ## 🔧 7. Évolutions souhaitables et possibles
 
-| Composant                       | Description                                                                                     |
-| ------------------------------- | ----------------------------------------------------------------------------------------------- |
-| Internet - Clients de la banque | Point d'accès pour les clients de la banque via Internet.                                       |
-| Vm Admin                        | Machine virtuelle dédiée à l'administration.                                                    |
-| Vm Appli                        | Machine virtuelle pour les applications bancaires.                                              |
-| Vm Proxy                        | Machine virtuelle servant de proxy pour les requêtes entrantes.                                 |
-| VM sécurité                     | Machine virtuelle avec mise en place d'une appli de base soc et iam par l'exploitation d'un nfs.
-| SOC                             | Centre des Opérations de Sécurité pour la surveillance et la gestion des incidents de sécurité. |
-| GLPI                            | Solution de gestion des services informatiques.                                                 |
-| Appli Banque                    | Application principale de la banque.                                                            |
-| NFS                             | Partage des données de sécurités par un serveur NFS                                                                           |
-| OnlyOffice                      | Suite bureautique en ligne pour la création et l'édition de documents.                          |
-| Policy View                     | Vue des politiques de sécurité.                                                                 |
-| Risky View                      | Vue des risques potentiels.                                                                     |
+| Composant                       | Description                                                                                      |
+| ------------------------------- | ------------------------------------------------------------------------------------------------ |
+| Internet - Clients de la banque | Point d'accès pour les clients de la banque via Internet.                                        |
+| Vm Admin                        | Machine virtuelle dédiée à l'administration.                                                     |
+| Vm Appli                        | Machine virtuelle pour les applications bancaires.                                               |
+| Vm Proxy                        | Machine virtuelle servant de proxy pour les requêtes entrantes.                                  |
+| VM sécurité                     | Machine virtuelle avec mise en place d'une appli de base soc et iam par l'exploitation d'un nfs. |
+| SOC                             | Centre des Opérations de Sécurité pour la surveillance et la gestion des incidents de sécurité.  |
+| GLPI                            | Solution de gestion des services informatiques.                                                  |
+| Appli Banque                    | Application principale de la banque.                                                             |
+| NFS                             | Partage des données de sécurités par un serveur NFS                                              |
+| OnlyOffice                      | Suite bureautique en ligne pour la création et l'édition de documents.                           |
+| Policy View                     | Vue des politiques de sécurité.                                                                  |
+| Risky View                      | Vue des risques potentiels.                                                                      |
 
 ## L'architecture idéale pour notre projet
 
