@@ -29,6 +29,8 @@ Le projet repose sur une architecture simple à deux machines virtuelles :
 
 ### Sécurisation de l’application PHP
 
+ha proxy mis en place avec https fonctionnel mais auto signé -> en quoi ha proxy peut etre avantageux sur vm graphique
+
 - Les VM sont cryptés (sécurité locale)
 - Requêtes SQL préparées avec \`PDO\` pour éviter les injections SQL
 - Aucune donnée sensible dans les URL (utilisation de \`POST\` pour les formulaires)
