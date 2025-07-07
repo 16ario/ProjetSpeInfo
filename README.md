@@ -173,5 +173,3 @@ Cette architecture est conçue pour offrir une haute disponibilité, une sécuri
 ## ✅ 8. Conclusion
 
 Ce projet met en œuvre une architecture simple, robuste et sécurisée, adaptée à un environnement bancaire. Le choix de PHP brut, bien que minimaliste, est ici un choix stratégique pour garantir la maîtrise complète du code et la conformité aux exigences de sécurité. Même sans services tiers ni frameworks, l’application reste claire, modulaire et évolutive.
-
-\---
