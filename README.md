@@ -186,4 +186,6 @@ C'est une verson plus avancée et idéale de notre application, pour des contrai
 ## 10. Conclusion
 
 Ce projet met en œuvre une architecture simple. Pour le moment, le projet s’appuie sur deux machines virtuelles distinctes (l’une pour le front (VMApp) et l’autre pour le back (VMBack)).
-Les deux parties de l'application sont sécurisées, adaptées à un environnement bancaire (même sans services tiers ni frameworks, l’application reste utilisable).
+Les deux parties de l'application sont sécurisées, adaptées à un environnement bancaire (même sans services tiers ni frameworks, l’application reste utilisable) : elles intègrent déjà plusieurs mesures de sécurité solides, comme l’usage de requêtes préparées, une double authentification lors de la connexion et une isolation réseau entre les VMs.
+
+Nous voudrions évoluer le projet pour pouvoir obtenir notre architechture idéale, s'appuyant sur 4 machines virtuelles, avec les 2 nouvelles VMs orientées infrastructure réseau (les 2 VMs déjà fonctionelles sont dédiées à l'application).
