@@ -1,4 +1,4 @@
-\# Documentation du projet — Application bancaire PHP/MySQL
+# Documentation du projet — Application bancaire PHP/MySQL
 
 ## 1. Architecture du projet
 
