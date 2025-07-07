@@ -3,8 +3,8 @@ version: '3.8'
 services:
   web:
     build: ./backend
-    ports:
-      - "8000:80"
+    expose:
+      - "80"  # On expose le port 80 pour que HAProxy puisse y accéder
     volumes:
       - ./backend:/var/www/html
     environment:
@@ -13,5 +13,13 @@ services:
       DB_USER: Cesario
       DB_PASS: "Timonlechat16&"
 
-#volumes:
-#  db_data:
+  haproxy:
+    image: haproxy:latest
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - ./haproxy/haproxy.cfg:/usr/local/etc/haproxy/haproxy.cfg:ro
+      - ./haproxy/certs:/usr/local/etc/haproxy/certs:ro
+    depends_on:
+      - web
