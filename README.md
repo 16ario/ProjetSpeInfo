@@ -29,8 +29,6 @@ Le projet repose sur une architecture simple à deux machines virtuelles :
 
 ### Sécurisation de l’application PHP
 
-ha proxy mis en place avec https fonctionnel mais auto signé -> en quoi ha proxy peut etre avantageux sur vm graphique
-
 - Les VM sont cryptés (sécurité locale)
 - Requêtes SQL préparées avec \`PDO\` pour éviter les injections SQL
 - Aucune donnée sensible dans les URL (utilisation de \`POST\` pour les formulaires)
@@ -122,7 +120,24 @@ Cela permet une maintenance facilitée, une meilleure lisibilité, et une évolu
 
 ---
 
-## 8. Évolutions souhaitables et possibles
+## 8. Mise en place de HAProxy avec HTTPS
+
+HAProxy a été mis en place, configuré pour assurer la répartition des requêtes entrantes vers l'application tout en établissant une connexion HTTPS fonctionnelle via un certificat SSL auto-signé.
+Avantages : 
+- Même avec un certificat auto-signé, la communication entre le client et le serveur est chiffrée.
+- N'a qu'un point d’entrée unique. HAProxy agit comme une passerelle centralisée, recevant toutes les connexions entrantes et les redirigeant proprement vers la VM Application.
+- De plus la surface d’exposition est réduite : la VM graphique (VM avec interface utilisateur) ne communique qu’avec HAProxy en interne, sans être exposée directement à Internet, ce qui renforce la sécurité.
+
+Possibilité d’évolution : ajout de logs, NFS, et terminaison SSL centralisée.
+
+### Pourquoi HAProxy sur une VM graphique ?
+
+L’interface graphique permet de visualiser et manipuler plus facilement les certificats SSL, les journaux de connexion ou les fichiers de configuration.
+Cela facilite aussi l’intégration avec d'autres outils GUI de monitoring ou de gestion du trafic en amont du déploiement final sur des VM headless (sans interface graphique) en production.
+
+---
+
+## 9. Évolutions souhaitables et possibles
 
 | Composant                       | Description                                                                                     |
 | ------------------------------- | ----------------------------------------------------------------------------------------------- |
@@ -142,16 +157,16 @@ Cela permet une maintenance facilitée, une meilleure lisibilité, et une évolu
 
 ![alt text](image.png)
 
-1.  **Accès Internet** : Les clients de la banque accèdent aux services via Internet. Cela inclut l'utilisation de pare-feu et de systèmes de détection d'intrusion pour sécuriser l'accès.
-2.  **Machines Virtuelles (VM)** :
+1) **Accès Internet** : Les clients de la banque accèdent aux services via Internet. Cela inclut l'utilisation de pare-feu et de systèmes de détection d'intrusion pour sécuriser l'accès.
+2) **Machines Virtuelles (VM)** :
 
 - **Vm Admin** : Utilisée pour les tâches administratives, elle est isolée pour minimiser les risques de sécurité.
 - **Vm Appli** : Héberge les applications bancaires, séparée des autres services pour une meilleure sécurité.
 - **Vm Proxy** : Fait office de proxy pour gérer et sécuriser les requêtes entrantes.
 - **Vm Socle** : Fournit les services de base nécessaires au fonctionnement des autres VM.
 
-1.  **Centre des Opérations de Sécurité (SOC)** : Surveille et gère les incidents de sécurité, assurant une réponse rapide aux menaces potentielles.
-2.  **Applications et Services** :
+1) **Centre des Opérations de Sécurité (SOC)** : Surveille et gère les incidents de sécurité, assurant une réponse rapide aux menaces potentielles.
+2) **Applications et Services** :
 
 - **GLPI** : Utilisé pour la gestion des services informatiques et le suivi des incidents.
 - **Appli Banque** : L'application principale qui gère les opérations bancaires.
@@ -168,6 +183,7 @@ Cela permet une maintenance facilitée, une meilleure lisibilité, et une évolu
 Cette architecture est conçue pour offrir une haute disponibilité, une sécurité renforcée et une gestion efficace des services bancaires.
 C'est une verson plus avancée et idéale de notre application, pour des contraintes de temps et de matériels nous avons déviés légèrement mais mis en place une base de projet.
 
-## 9. Conclusion
+## 10. Conclusion
 
-Ce projet met en œuvre une architecture simple. La partie fonctionelle (app) est sécurisée, adaptée à un environnement bancaire (même sans services tiers ni frameworks, l’application reste utilisable).
+Ce projet met en œuvre une architecture simple. Pour le moment, le projet s’appuie sur deux machines virtuelles distinctes (l’une pour le front (VMApp) et l’autre pour le back (VMBack)).
+Les deux parties de l'application sont sécurisées, adaptées à un environnement bancaire (même sans services tiers ni frameworks, l’application reste utilisable).
